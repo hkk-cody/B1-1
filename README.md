@@ -23,6 +23,61 @@
 
 방화벽은 UFW를 사용한다. 기본 정책은 인바운드 차단, 아웃바운드 허용으로 두고 `20022/tcp`, `15034/tcp`만 예외적으로 허용한다.
 
+```bash
+ensure_sshd_runtime_dir() { # SSHD가 런타임에 필요한 디렉토리를 생성하는 함수
+  sudo mkdir -p /run/sshd
+  sudo chmod 755 /run/sshd
+}
+
+ensure_sshd_hostkeys() {
+  if ls /etc/ssh/ssh_host_* >/dev/null 2>&1; then # SSH 호스트 키가 이미 존재하는 경우
+    return 0
+  fi
+
+  sudo ssh-keygen -A # SSH 호스트 키가 없는 경우 자동으로 생성
+}
+
+ensure_sshd_setting() {
+  local key="$1"
+  local value="$2"
+
+  if grep -qE "^[[:space:]]*#?[[:space:]]*${key}[[:space:]]+" "$SSH_CONFIG"; then
+    sudo sed -i.bak -E "s|^[[:space:]]*#?[[:space:]]*${key}[[:space:]]+.*|${key} ${value}|" "$SSH_CONFIG"
+  else
+  # 설정이 없으면 파일 끝에 추가
+    echo "${key} ${value}" | sudo tee -a "$SSH_CONFIG" >/dev/null
+  fi
+}
+
+ensure_sshd_runtime_dir
+ensure_sshd_hostkeys
+ensure_sshd_setting Port "$SSH_PORT"
+ensure_sshd_setting PermitRootLogin no
+
+sudo sshd -t # SSH 설정 파일의 문법이 올바른지 테스트
+sudo systemctl restart ssh # SSH 서비스를 재시작하여 설정 반영
+sudo systemctl enable ssh # 시스템 부팅 시 SSH 서비스가 자동으로 시작되도록 설정
+
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw allow "${SSH_PORT}/tcp"
+sudo ufw allow "${APP_PORT}/tcp"
+sudo ufw --force enable # UFW를 강제로 활성화하여 설정을 즉시 적용 (사용자 확인 프롬프트 없이)
+```
+
+- SSH 포트가 `20022`인지 확인
+- Root 원격 로그인이 차단되었는지 확인
+- UFW가 활성화되어 있고 `20022/tcp`, `15034/tcp`만 허용되는지 확인
+
+```bash
+sudo grep -E "^(Port|PermitRootLogin)" /etc/ssh/sshd_config
+sudo ss -tulnp | grep sshd
+sudo ufw status verbose
+```
+
+![SSH 및 방화벽 설정 확인 예시](./assets/1_1.png)
+![UFW 상태 확인 예시](./assets/1_2.png)
+
 ### 2-2. 계정, 그룹, 권한 체계 구성
 
 운영 목적에 맞게 계정을 분리했다.
@@ -52,6 +107,66 @@
 
 ACL은 하위 파일에도 동일 정책이 이어지도록 default ACL을 추가하는 방식으로 설정했다.
 
+```bash
+log_step "2-1" "그룹을 생성합니다"
+ensure_group agent-common
+ensure_group agent-core
+
+log_step "2-2" "사용자 계정을 생성합니다"
+ensure_user agent-admin "agent-core,agent-common"
+ensure_user agent-dev "agent-core,agent-common"
+ensure_user agent-test "agent-common"
+
+log_step "2-3" "디렉토리 구조 생성 및 소유권/기본 권한 설정"
+ensure_dir "$AGENT_HOME"
+ensure_dir "$UPLOAD_DIR"
+ensure_dir "$API_KEY_DIR"
+ensure_dir "$BIN_DIR"
+ensure_dir "$LOG_DIR"
+
+# 1. 앱 홈: 관리자만 모든 권한, common은 읽기/진입만 (750)
+set_owner_mode "agent-admin:agent-common" 750 "$AGENT_HOME"
+# 2. 업로드: common 그룹 누구나 파일 업로드 가능 (770)
+set_owner_mode "agent-admin:agent-common" 770 "$UPLOAD_DIR"
+# 3. API 키 (디렉토리인 경우): core 그룹 ONLY (770)
+set_owner_mode "agent-admin:agent-core" 770 "$API_KEY_DIR"
+# 4. 바이너리: dev가 관리, core가 실행 가능 (750)
+set_owner_mode "agent-dev:agent-core" 750 "$BIN_DIR"
+# 5. 로그: core 그룹 ONLY 읽고 쓰기 가능 (770)
+set_owner_mode "agent-admin:agent-core" 770 "$LOG_DIR"
+log_ok "디렉토리 생성 및 소유권/기본 권한 셋팅 완료"
+
+log_step "2-4" "하위 파일들을 위한 ACL 상속(-d) 권한 설정"
+if command -v setfacl >/dev/null 2>&1; then
+  sudo setfacl -d -m g:agent-common:rwx "$UPLOAD_DIR"
+  sudo setfacl -d -m g:agent-core:rwx "$API_KEY_DIR"
+  sudo setfacl -d -m g:agent-core:rwx "$LOG_DIR"
+  log_ok "ACL 상속(Default) 권한 설정 완료"
+else
+  log_ok "setfacl 명령어가 없어 ACL 상속 설정은 건너뜁니다."
+fi
+
+log_step "2-5" "최종 권한 상태 검증"
+sudo ls -ld "$AGENT_HOME" "$UPLOAD_DIR" "$API_KEY_DIR" "$BIN_DIR" "$LOG_DIR"
+if command -v setfacl >/dev/null 2>&1; then
+  sudo getfacl "$UPLOAD_DIR" "$API_KEY_DIR" "$LOG_DIR"
+fi
+
+
+```
+
+
+
+- `agent-admin`, `agent-dev`, `agent-test` 계정이 생성되었는지 확인
+- `agent-common`, `agent-core` 그룹이 존재하는지 확인
+- 디렉토리 권한과 ACL이 의도한 대로 적용되었는지 확인
+
+```bash
+id agent-admin && id agent-dev && id agent-test
+```
+
+
+
 ### 2-3. 애플리케이션 실행 환경 구성
 
 환경 변수는 `/etc/profile.d/agent_env.sh`에 저장해 시스템 전역으로 적용되도록 했다.
@@ -78,20 +193,6 @@ source /etc/profile.d/agent_env.sh
 
 이 과제에서 제출 시 중요하게 봐야 할 확인 항목은 아래와 같다.
 
-### 3-1. SSH 및 방화벽
-
-- SSH 포트가 `20022`인지 확인
-- Root 원격 로그인이 차단되었는지 확인
-- UFW가 활성화되어 있고 `20022/tcp`, `15034/tcp`만 허용되는지 확인
-
-```bash
-sudo grep -E "^(Port|PermitRootLogin)" /etc/ssh/sshd_config
-sudo ss -tulnp | grep sshd
-sudo ufw status verbose
-```
-
-![SSH 및 방화벽 설정 확인 예시](./assets/1_1.png)
-![UFW 상태 확인 예시](./assets/1_2.png)
 
 ### 3-2. 계정 및 권한
 
