@@ -184,7 +184,6 @@ log_ok "디렉토리 생성 및 소유권/기본 권한 셋팅 완료"
 
 log_step "2-4" "하위 파일들을 위한 ACL 상속(-d) 권한 설정"
 if command -v setfacl >/dev/null 2>&1; then
-  # 소유 그룹 권한은 이미 770으로 충분하므로, 앞으로 생길 자식 파일들을 위한 대물림(-d) 규칙만 셋팅합니다.
   sudo setfacl -d -m g:agent-common:rwx "$UPLOAD_DIR"
   sudo setfacl -d -m g:agent-core:rwx "$API_KEY_DIR"
   sudo setfacl -d -m g:agent-core:rwx "$LOG_DIR"
