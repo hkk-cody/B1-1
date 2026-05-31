@@ -232,7 +232,7 @@ set_owner_mode "agent-admin:agent-core" 640 "$API_KEY_DIR/secret.key"
 log_step "3-3" "애플리케이션 바이너리를 AGENT_HOME으로 이동"
 sudo chown agent-admin:agent-common ./agent-app/agent-app-linux-arm64 ./agent-app/agent-app-linux-x86
 sudo chmod +x ./agent-app/agent-app-linux-arm64 ./agent-app/agent-app-linux-x86
-sudo mv ./agent-app "$AGENT_HOME"
+sudo mv ./agent-app/agent-app-linux-arm64 ./agent-app/agent-app-linux-x86 "$AGENT_HOME"
 log_ok "애플리케이션 바이너리 이동 완료"
 
 # ----- 최종 요약 -----
