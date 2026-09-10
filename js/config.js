@@ -1,0 +1,75 @@
+// GitHub 공개 프로필과 저장소 README를 바탕으로 정리한 콘텐츠입니다 (2026-09-10).
+// 토큰, 비밀번호, 비공개 연락처는 이 파일에 넣지 않습니다.
+window.PORTFOLIO_CONFIG = Object.freeze({
+  name: 'hkk',
+  role: 'Python · Web · Linux',
+  tagline: 'Python으로 자료구조와 알고리즘을 구현하고,\n웹과 데이터베이스, Linux의 기본을 익히고 있습니다.',
+  aboutLead: '작동하는 코드에서, 동작하는 원리까지.',
+  about: 'Codyssey 과제를 수행하며 배운 내용을 GitHub에 기록하고 있습니다. Mini Git과 Mini Redis로 알고리즘과 자료구조를 구현하고, 가계부 CLI와 SQLite 데이터베이스, Linux 서버 운영 실습으로 학습 범위를 넓혀가고 있습니다.',
+  githubUsername: 'hkk-cody',
+  profileImage: 'images/github-avatar.png',
+  profileImageAlt: 'hkk의 GitHub 프로필 이미지',
+  // 공개 저장소 README를 바탕으로 정리한 소개입니다. API의 실제 저장소와 연결됩니다.
+  featuredRepositories: ['B1-1', 'B5-2', 'B5-1', 'B6-1', 'B2-1', 'B4-1'],
+  repositoryDetails: {
+    'B1-1': {
+      name: '개인 포트폴리오',
+      description: 'HTML, CSS, JavaScript로 직접 만든 반응형 웹사이트. 테마 전환, 문의 폼 검증, GitHub 연동을 담았습니다.',
+      tags: ['HTML', 'CSS', 'JavaScript'],
+      coverTitle: 'Hello,\nweb',
+      coverLabel: 'WEB DEVELOPMENT',
+      category: 'B1-1 · 웹 기초',
+    },
+    'B5-2': {
+      name: 'Mini Git CLI',
+      description: '커밋 그래프와 브랜치, 검색과 정렬을 직접 구현하며 Git의 핵심 원리를 익히는 Python CLI입니다.',
+      tags: ['Python', 'Graph', 'Algorithms'],
+      coverTitle: 'Mini\nGit',
+      coverLabel: 'GRAPHS & ALGORITHMS',
+      category: 'B5-2 · 알고리즘',
+    },
+    'B5-1': {
+      name: 'Mini Redis',
+      description: '해시맵, 연결 리스트, 최소 힙을 조합해 키·값 저장, LRU와 TTL을 구현한 학습용 CLI입니다.',
+      tags: ['Python', 'Hash Map', 'LRU / TTL'],
+      coverTitle: 'Mini\nRedis',
+      coverLabel: 'DATA STRUCTURES',
+      category: 'B5-1 · 자료구조',
+    },
+    'B6-1': {
+      name: '도서 대여 데이터베이스',
+      description: 'SQLite로 도서 대여 테이블을 설계하고, 샘플 데이터를 넣어 SQL 쿼리와 실행 결과를 확인한 프로젝트입니다.',
+      tags: ['SQL', 'SQLite', 'Data Modeling'],
+      coverTitle: 'Library\nDB',
+      coverLabel: 'DATABASE DESIGN',
+      category: 'B6-1 · 데이터베이스',
+    },
+    'B2-1': {
+      name: '파일 기반 가계부',
+      description: 'Python 표준 라이브러리로 거래 기록, 검색, 월별 요약, 예산 관리와 CSV 입출력을 구현한 콘솔 앱입니다.',
+      tags: ['Python', 'CLI', 'File I/O'],
+      coverTitle: 'Budget\nCLI',
+      coverLabel: 'PYTHON APPLICATION',
+      category: 'B2-1 · Python',
+    },
+    'B4-1': {
+      name: 'Linux 서버 모니터링',
+      description: 'Linux 실행 환경을 구성하고 Bash와 cron으로 서버 상태를 주기적으로 기록하는 운영 실습입니다.',
+      tags: ['Linux', 'Bash', 'cron'],
+      coverTitle: 'Server\nWatch',
+      coverLabel: 'LINUX & OPERATIONS',
+      category: 'B4-1 · 서버 운영',
+    },
+  },
+  projects: [
+    {
+      name: '나를 소개하는 웹페이지',
+      description: '웹의 기본으로 직접 만든 반응형 포트폴리오. 지금 보고 계신 이 웹사이트입니다.',
+      tags: ['HTML', 'CSS', 'JavaScript'],
+      url: 'https://github.com/hkk-cody/B1-1',
+      category: '개인 프로젝트',
+      coverTitle: 'Hello,\nweb',
+      coverLabel: 'PERSONAL WEBSITE',
+    },
+  ],
+});

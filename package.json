@@ -1,0 +1,13 @@
+{
+  "name": "b1-1-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Vanilla JavaScript portfolio with an optional local GitHub token proxy",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test tests/*.test.mjs"
+  }
+}
