@@ -1,113 +1,236 @@
 <!DOCTYPE html>
 <html lang="ko" data-theme="light">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="hkk의 Codyssey 학습 포트폴리오. Python, 웹, 자료구조, SQL과 Linux를 직접 구현하며 배우는 기록입니다.">
-    <meta name="color-scheme" content="light dark">
-    <title>hkk — Developer Portfolio</title>
-    <link rel="icon" href="images/github-avatar.png" type="image/png">
-    <link rel="stylesheet" href="css/style.css">
-    <script src="js/config.js" defer></script>
-    <script src="js/main.js" defer></script>
-    <script src="js/projects.js" defer></script>
-    <script src="js/github.js" defer></script>
-    <script src="js/contact.js" defer></script>
-  </head>
-  <body>
-    <a class="skip-link" href="#main">본문으로 건너뛰기</a>
 
-    <header class="site-header" id="site-header">
-      <nav class="navigation container" aria-label="주요 메뉴">
-        <a class="wordmark" href="#hero" aria-label="홈으로 이동"><span data-profile="name">hkk</span><span class="accent">.</span></a>
-        <div class="nav-actions">
-          <ul class="nav-links" id="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#contact">Contact <span aria-hidden="true">↗</span></a></li>
-          </ul>
-          <button class="icon-button theme-toggle" id="theme-toggle" type="button" aria-label="다크 모드 켜기" aria-pressed="false" hidden>
-            <svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M20.4 14A8.5 8.5 0 0 1 10 3.6 8.5 8.5 0 1 0 20.4 14Z"/></svg>
-            <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.4 1.4m11.2 11.2L19 19M5 19l1.4-1.4M17.6 6.4 19 5"/></svg>
-          </button>
-          <button class="icon-button menu-toggle" id="menu-toggle" type="button" aria-controls="nav-links" aria-expanded="false" aria-label="메뉴 열기" hidden><span></span><span></span></button>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="hkk의 Codyssey 학습 포트폴리오. Python, 웹, 자료구조, SQL과 Linux를 직접 구현하며 배우는 기록입니다.">
+  <meta name="color-scheme" content="light dark">
+  <title>hkk — Developer Portfolio</title>
+  <link rel="icon" href="images/github-avatar.png" type="image/png">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/config.js" defer></script>
+  <script src="js/main.js" defer></script>
+  <script src="js/projects.js" defer></script>
+  <script src="js/github.js" defer></script>
+  <script src="js/contact.js" defer></script>
+</head>
+
+<body>
+  <a class="skip-link" href="#main">본문으로 건너뛰기</a>
+
+  <header class="site-header" id="site-header">
+    <nav class="navigation container" aria-label="주요 메뉴">
+      <a class="wordmark" href="#hero" aria-label="홈으로 이동"><span data-profile="name">hkk</span><span
+          class="accent">.</span></a>
+      <div class="nav-actions">
+        <ul class="nav-links" id="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact <span aria-hidden="true">↗</span></a></li>
+        </ul>
+        <button class="icon-button theme-toggle" id="theme-toggle" type="button" aria-label="다크 모드 켜기"
+          aria-pressed="false" hidden>
+          <svg class="icon icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+            aria-hidden="true">
+            <path d="M20.4 14A8.5 8.5 0 0 1 10 3.6 8.5 8.5 0 1 0 20.4 14Z" />
+          </svg>
+          <svg class="icon icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
+            aria-hidden="true">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.4 1.4m11.2 11.2L19 19M5 19l1.4-1.4M17.6 6.4 19 5" />
+          </svg>
+        </button>
+        <button class="icon-button menu-toggle" id="menu-toggle" type="button" aria-controls="nav-links"
+          aria-expanded="false" aria-label="메뉴 열기" hidden><span></span><span></span></button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero container" id="hero" aria-labelledby="hero-title">
+      <div class="hero-topline"><span class="eyebrow">HKK / LEARNING PORTFOLIO</span><span
+          class="eyebrow hero-edition">CODYSSEY · 2026</span></div>
+      <div class="hero-layout">
+        <div class="hero-content">
+          <p class="hero-greeting">안녕하세요, <span data-profile="name">hkk</span>입니다.</p>
+          <h1 id="hero-title">만들며 익히는<br><span class="accent">개발의 기본</span><span class="accent">.</span></h1>
+          <p class="hero-description" data-profile="tagline">Python으로 자료구조와 알고리즘을 구현하고,<br>웹과 데이터베이스, Linux의 기본을 익히고
+            있습니다.</p>
+          <div class="hero-buttons"><a class="button button-primary" href="#projects">프로젝트 보기 <span
+                aria-hidden="true">↗</span></a><a class="button button-outline" href="#contact">이야기 나누기 <span
+                aria-hidden="true">↗</span></a></div>
         </div>
-      </nav>
-    </header>
-
-    <main id="main">
-      <section class="hero container" id="hero" aria-labelledby="hero-title">
-        <div class="hero-topline"><span class="eyebrow">HKK / LEARNING PORTFOLIO</span><span class="eyebrow hero-edition">CODYSSEY · 2026</span></div>
-        <div class="hero-layout">
-          <div class="hero-content">
-            <p class="hero-greeting">안녕하세요, <span data-profile="name">hkk</span>입니다.</p>
-            <h1 id="hero-title">만들며 익히는<br><span class="accent">개발의 기본</span><span class="accent">.</span></h1>
-            <p class="hero-description" data-profile="tagline">Python으로 자료구조와 알고리즘을 구현하고,<br>웹과 데이터베이스, Linux의 기본을 익히고 있습니다.</p>
-            <div class="hero-buttons"><a class="button button-primary" href="#projects">프로젝트 보기 <span aria-hidden="true">↗</span></a><a class="button button-outline" href="#contact">이야기 나누기 <span aria-hidden="true">↗</span></a></div>
+        <aside class="hero-note" aria-label="개발 노트">
+          <div class="note-heading"><span class="eyebrow">CURRENTLY LEARNING</span><span aria-hidden="true">↗</span>
           </div>
-          <aside class="hero-note" aria-label="개발 노트">
-            <div class="note-heading"><span class="eyebrow">CURRENTLY LEARNING</span><span aria-hidden="true">↗</span></div>
-            <p class="note-code"><span class="code-muted">const</span> learning = {<br>&nbsp; python: <span class="code-value">"algorithms"</span>,<br>&nbsp; web: <span class="code-value">"HTML / CSS / JS"</span>,<br>&nbsp; linux: <span class="code-value">"Bash &amp; cron"</span><br>};</p>
-            <div class="note-footer"><span>직접 구현하고, 기록하며 배우기.</span><span class="note-index">hkk-cody</span></div>
-          </aside>
-        </div>
-        <div class="hero-bottom"><span>PYTHON · WEB · SQL · LINUX</span><a href="#about">아래에서 더 알아보기 <span aria-hidden="true">↓</span></a></div>
-      </section>
+          <p class="note-code"><span class="code-muted">const</span> learning = {<br>&nbsp; python: <span
+              class="code-value">"algorithms"</span>,<br>&nbsp; web: <span class="code-value">"HTML / CSS /
+              JS"</span>,<br>&nbsp; linux: <span class="code-value">"Bash &amp; cron"</span><br>};</p>
+          <div class="note-footer"><span>직접 구현하고, 기록하며 배우기.</span><span class="note-index">hkk-cody</span></div>
+        </aside>
+      </div>
+      <div class="hero-bottom"><span>PYTHON · WEB · SQL · LINUX</span><a href="#about">아래에서 더 알아보기 <span
+            aria-hidden="true">↓</span></a></div>
+    </section>
 
-      <section class="section about-section" id="about" aria-labelledby="about-title">
-        <div class="container section-grid">
-          <div class="section-heading" data-reveal><p class="eyebrow section-index">01 — ABOUT</p><h2 id="about-title">코드 너머의<br>저를 소개합니다.</h2></div>
-          <div class="about-content" data-reveal>
-            <div class="profile-row"><img class="profile-image" src="images/github-avatar.png" width="88" height="88" alt="hkk의 GitHub 프로필 이미지"><div><h3 data-profile="name">hkk</h3><p data-profile="role">Python · Web · Linux</p><a class="profile-handle" data-github-link data-github-handle href="https://github.com/hkk-cody" target="_blank" rel="noopener noreferrer">@hkk-cody</a></div></div>
-            <p class="about-lead" data-profile="aboutLead">작동하는 코드에서, 동작하는 원리까지.</p>
-            <p class="muted" data-profile="about">Codyssey 과제를 수행하며 배운 내용을 GitHub에 기록하고 있습니다. Mini Git과 Mini Redis로 알고리즘과 자료구조를 구현하고, 가계부 CLI와 SQLite 데이터베이스, Linux 서버 운영 실습으로 학습 범위를 넓혀가고 있습니다.</p>
-            <div class="about-principles"><span>직접 구현하기</span><span>테스트로 확인하기</span><span>학습 과정 기록하기</span></div>
-          </div>
+    <section class="section about-section" id="about" aria-labelledby="about-title">
+      <div class="container section-grid">
+        <div class="section-heading" data-reveal>
+          <p class="eyebrow section-index">01 — ABOUT</p>
+          <h2 id="about-title">코드 너머의<br>저를 소개합니다.</h2>
         </div>
-      </section>
-
-      <section class="section skills-section" id="skills" aria-labelledby="skills-title">
-        <div class="container">
-          <div class="section-top" data-reveal><div><p class="eyebrow section-index">02 — SKILLS</p><h2 id="skills-title">프로젝트로 익히는 기술.</h2></div><p class="section-caption">실제로 만들며 학습하고 있습니다.</p></div>
-          <ul class="skills-grid">
-            <li class="skill-card" data-reveal><div class="skill-card-top"><span class="skill-symbol" aria-hidden="true">Py</span><span class="skill-number">01</span></div><h3>Python</h3><p>가계부와 Mini Git, Mini Redis를 직접 구현합니다.</p><span class="skill-detail">CLI · Data Structures · Algorithms</span></li>
-            <li class="skill-card" data-reveal><div class="skill-card-top"><span class="skill-symbol" aria-hidden="true">&lt;/&gt;</span><span class="skill-number">02</span></div><h3>HTML · CSS · JS</h3><p>반응형 화면과 사용자 인터랙션, API 연동을 배웁니다.</p><span class="skill-detail">Semantic HTML · Grid · DOM</span></li>
-            <li class="skill-card" data-reveal><div class="skill-card-top"><span class="skill-symbol" aria-hidden="true">SQL</span><span class="skill-number">03</span></div><h3>SQL · SQLite</h3><p>도서 대여 데이터의 구조를 설계하고 쿼리를 작성합니다.</p><span class="skill-detail">Tables · Queries · Data Modeling</span></li>
-            <li class="skill-card" data-reveal><div class="skill-card-top"><span class="skill-symbol" aria-hidden="true">$ _</span><span class="skill-number">04</span></div><h3>Linux · Git</h3><p>서버 상태를 기록하고 코드의 변경 이력을 관리합니다.</p><span class="skill-detail">Bash · cron · GitHub</span></li>
-          </ul>
-        </div>
-      </section>
-
-      <section class="section" id="projects" aria-labelledby="projects-title">
-        <div class="container">
-          <div class="section-top" data-reveal><div><p class="eyebrow section-index">03 — PROJECTS</p><h2 id="projects-title">만들면서 배우는 것들.</h2></div><a class="text-link" data-github-link href="https://github.com/hkk-cody" target="_blank" rel="noopener noreferrer">GitHub 방문하기 <span aria-hidden="true">↗</span></a></div>
-          <p class="projects-intro muted">웹부터 자료구조, 데이터베이스, 서버 운영까지. 직접 구현한 학습 프로젝트를 소개합니다.</p>
-          <div id="projects-region" aria-busy="false">
-            <p class="sr-only" id="projects-announcement" role="status" aria-live="polite"></p>
-            <div class="projects-grid" id="projects-grid">
-              <article class="project-card"><div class="project-cover"><span class="eyebrow">PERSONAL WEBSITE</span><p class="cover-title">Hello,<br>web<span>.</span></p><span class="cover-caption">MY FIRST PORTFOLIO / 2026</span></div><div class="project-body"><div class="project-meta"><span>01</span><span>개인 프로젝트</span></div><h3>나를 소개하는 웹페이지</h3><p>웹의 기본으로 직접 만든 반응형 포트폴리오. 지금 보고 계신 이 웹사이트입니다.</p><ul class="tags" aria-label="사용 기술"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul><a class="project-link" href="https://github.com/hkk-cody/B1-1" target="_blank" rel="noopener noreferrer">저장소 보기 <span aria-hidden="true">↗</span></a></div></article>
+        <div class="about-content" data-reveal>
+          <div class="profile-row"><img class="profile-image" src="images/github-avatar.png" width="88" height="88"
+              alt="hkk의 GitHub 프로필 이미지">
+            <div>
+              <h3 data-profile="name">hkk</h3>
+              <p data-profile="role">Python · Web · Linux</p><a class="profile-handle" data-github-link
+                data-github-handle href="https://github.com/hkk-cody" target="_blank"
+                rel="noopener noreferrer">@hkk-cody</a>
             </div>
-            <div class="project-state" id="projects-state" hidden><span class="state-symbol" id="projects-state-symbol" aria-hidden="true">…</span><p id="projects-state-message"></p><button class="button button-outline" id="projects-retry" type="button" hidden>다시 시도 <span aria-hidden="true">↻</span></button></div>
+          </div>
+          <p class="about-lead" data-profile="aboutLead">작동하는 코드에서, 동작하는 원리까지.</p>
+          <p class="muted" data-profile="about">Codyssey 과제를 수행하며 배운 내용을 GitHub에 기록하고 있습니다. Mini Git과 Mini Redis로 알고리즘과
+            자료구조를 구현하고, 가계부 CLI와 SQLite 데이터베이스, Linux 서버 운영 실습으로 학습 범위를 넓혀가고 있습니다.</p>
+          <div class="about-principles"><span>직접 구현하기</span><span>테스트로 확인하기</span><span>학습 과정 기록하기</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section skills-section" id="skills" aria-labelledby="skills-title">
+      <div class="container">
+        <div class="section-top" data-reveal>
+          <div>
+            <p class="eyebrow section-index">02 — SKILLS</p>
+            <h2 id="skills-title">프로젝트로 익히는 기술.</h2>
+          </div>
+          <p class="section-caption">실제로 만들며 학습하고 있습니다.</p>
+        </div>
+        <ul class="skills-grid">
+          <li class="skill-card" data-reveal>
+            <div class="skill-card-top"><span class="skill-symbol" aria-hidden="true">Py</span><span
+                class="skill-number">01</span></div>
+            <h3>Python</h3>
+            <p>가계부와 Mini Git, Mini Redis를 직접 구현합니다.</p><span class="skill-detail">CLI · Data Structures ·
+              Algorithms</span>
+          </li>
+          <li class="skill-card" data-reveal>
+            <div class="skill-card-top"><span class="skill-symbol" aria-hidden="true">&lt;/&gt;</span><span
+                class="skill-number">02</span></div>
+            <h3>HTML · CSS · JS</h3>
+            <p>반응형 화면과 사용자 인터랙션, API 연동을 배웁니다.</p><span class="skill-detail">Semantic HTML · Grid · DOM</span>
+          </li>
+          <li class="skill-card" data-reveal>
+            <div class="skill-card-top"><span class="skill-symbol" aria-hidden="true">SQL</span><span
+                class="skill-number">03</span></div>
+            <h3>SQL · SQLite</h3>
+            <p>도서 대여 데이터의 구조를 설계하고 쿼리를 작성합니다.</p><span class="skill-detail">Tables · Queries · Data Modeling</span>
+          </li>
+          <li class="skill-card" data-reveal>
+            <div class="skill-card-top"><span class="skill-symbol" aria-hidden="true">$ _</span><span
+                class="skill-number">04</span></div>
+            <h3>Linux · Git</h3>
+            <p>서버 상태를 기록하고 코드의 변경 이력을 관리합니다.</p><span class="skill-detail">Bash · cron · GitHub</span>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" id="projects" aria-labelledby="projects-title">
+      <div class="container">
+        <div class="section-top" data-reveal>
+          <div>
+            <p class="eyebrow section-index">03 — PROJECTS</p>
+            <h2 id="projects-title">만들면서 배우는 것들.</h2>
+          </div><a class="text-link" data-github-link href="https://github.com/hkk-cody" target="_blank"
+            rel="noopener noreferrer">GitHub 방문하기 <span aria-hidden="true">↗</span></a>
+        </div>
+        <p class="projects-intro muted">웹부터 자료구조, 데이터베이스, 서버 운영까지. 직접 구현한 학습 프로젝트를 소개합니다.</p>
+        <div id="projects-region" aria-busy="false">
+          <p class="sr-only" id="projects-announcement" role="status" aria-live="polite"></p>
+          <div class="projects-grid" id="projects-grid">
+            <article class="project-card">
+              <div class="project-cover"><span class="eyebrow">PERSONAL WEBSITE</span>
+                <p class="cover-title">Hello,<br>web<span>.</span></p><span class="cover-caption">MY FIRST PORTFOLIO /
+                  2026</span>
+              </div>
+              <div class="project-body">
+                <div class="project-meta"><span>01</span><span>개인 프로젝트</span></div>
+                <h3>나를 소개하는 웹페이지</h3>
+                <p>웹의 기본으로 직접 만든 반응형 포트폴리오. 지금 보고 계신 이 웹사이트입니다.</p>
+                <ul class="tags" aria-label="사용 기술">
+                  <li>HTML</li>
+                  <li>CSS</li>
+                  <li>JavaScript</li>
+                </ul><a class="project-link" href="https://github.com/hkk-cody/B1-1" target="_blank"
+                  rel="noopener noreferrer">저장소 보기 <span aria-hidden="true">↗</span></a>
+              </div>
+            </article>
+          </div>
+          <div class="project-state" id="projects-state" hidden><span class="state-symbol" id="projects-state-symbol"
+              aria-hidden="true">…</span>
+            <p id="projects-state-message"></p><button class="button button-outline" id="projects-retry" type="button"
+              hidden>다시 시도 <span aria-hidden="true">↻</span></button>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="section contact-section" id="contact" aria-labelledby="contact-title">
-        <div class="container section-grid">
-          <div class="contact-copy" data-reveal><p class="eyebrow section-index">04 — CONTACT</p><h2 id="contact-title">함께 배우는<br>이야기를 나눠요<span class="accent">.</span></h2><p class="muted">학습 프로젝트가 궁금하다면<br>GitHub에서 코드와 기록을 살펴보세요.</p><p class="contact-note">이 폼은 입력 검증을 체험하는 데모입니다.<br>메시지가 실제로 전송되지는 않습니다.</p><a class="text-link" data-github-link href="https://github.com/hkk-cody" target="_blank" rel="noopener noreferrer">GitHub에서 만나기 <span aria-hidden="true">↗</span></a></div>
-          <form class="contact-form" id="contact-form" data-reveal>
-            <div class="form-row"><div class="form-field"><label for="name">이름 <span class="required-mark" aria-hidden="true">*</span><span class="sr-only">(필수)</span></label><input id="name" name="name" type="text" autocomplete="name" placeholder="어떻게 불러드릴까요?" required maxlength="80" aria-describedby="name-error"><p class="field-error" id="name-error"></p></div><div class="form-field"><label for="email">이메일 <span class="required-mark" aria-hidden="true">*</span><span class="sr-only">(필수)</span></label><input id="email" name="email" type="email" autocomplete="email" placeholder="hello@example.com" required maxlength="254" aria-describedby="email-error"><p class="field-error" id="email-error"></p></div></div>
-            <div class="form-field"><label for="message">메시지 <span class="required-mark" aria-hidden="true">*</span><span class="sr-only">(필수)</span></label><textarea id="message" name="message" rows="5" placeholder="나누고 싶은 이야기를 남겨주세요." required maxlength="3000" aria-describedby="message-error message-count"></textarea><div class="message-feedback"><p class="field-error" id="message-error"></p><span class="character-count" id="message-count">0 / 3,000</span></div></div>
-            <div class="form-bottom"><span class="form-required-note">* 필수 입력 항목</span><button class="button button-primary" id="submit-button" type="submit" disabled>입력 확인하기 <span aria-hidden="true">↗</span></button></div>
-            <p class="form-result" id="form-result" role="status" aria-live="polite" hidden></p>
-            <noscript><p>문의 폼의 입력 확인 기능은 JavaScript를 켜야 사용할 수 있습니다.</p></noscript>
-          </form>
+    <section class="section contact-section" id="contact" aria-labelledby="contact-title">
+      <div class="container section-grid">
+        <div class="contact-copy" data-reveal>
+          <p class="eyebrow section-index">04 — CONTACT</p>
+          <h2 id="contact-title">함께 배우는<br>이야기를 나눠요<span class="accent">.</span></h2>
+          <p class="muted">학습 프로젝트가 궁금하다면<br>GitHub에서 코드와 기록을 살펴보세요.</p>
+          <p class="contact-note">이 폼은 입력 검증을 체험하는 데모입니다.<br>메시지가 실제로 전송되지는 않습니다.</p><a class="text-link"
+            data-github-link href="https://github.com/hkk-cody" target="_blank" rel="noopener noreferrer">GitHub에서 만나기
+            <span aria-hidden="true">↗</span></a>
         </div>
-      </section>
-    </main>
+        <form class="contact-form" id="contact-form" data-reveal>
+          <div class="form-row">
+            <div class="form-field"><label for="name">이름 <span class="required-mark" aria-hidden="true">*</span><span
+                  class="sr-only">(필수)</span></label><input id="name" name="name" type="text" autocomplete="name"
+                placeholder="어떻게 불러드릴까요?" required maxlength="80" aria-describedby="name-error">
+              <p class="field-error" id="name-error"></p>
+            </div>
+            <div class="form-field"><label for="email">이메일 <span class="required-mark" aria-hidden="true">*</span><span
+                  class="sr-only">(필수)</span></label><input id="email" name="email" type="email" autocomplete="email"
+                placeholder="hello@example.com" required maxlength="254" aria-describedby="email-error">
+              <p class="field-error" id="email-error"></p>
+            </div>
+          </div>
+          <div class="form-field"><label for="message">메시지 <span class="required-mark" aria-hidden="true">*</span><span
+                class="sr-only">(필수)</span></label><textarea id="message" name="message" rows="5"
+              placeholder="나누고 싶은 이야기를 남겨주세요." required maxlength="3000"
+              aria-describedby="message-error message-count"></textarea>
+            <div class="message-feedback">
+              <p class="field-error" id="message-error"></p><span class="character-count" id="message-count">0 /
+                3,000</span>
+            </div>
+          </div>
+          <div class="form-bottom"><span class="form-required-note">* 필수 입력 항목</span><button
+              class="button button-primary" id="submit-button" type="submit" disabled>입력 확인하기 <span
+                aria-hidden="true">↗</span></button></div>
+          <p class="form-result" id="form-result" role="status" aria-live="polite" hidden></p>
+          <noscript>
+            <p>문의 폼의 입력 확인 기능은 JavaScript를 켜야 사용할 수 있습니다.</p>
+          </noscript>
+        </form>
+      </div>
+    </section>
+  </main>
 
-    <footer class="site-footer"><div class="container footer-content"><a class="wordmark" href="#hero"><span data-profile="name">hkk</span><span class="accent">.</span></a><p>© <span id="copyright-year">2026</span> <span data-profile="name">hkk</span>. Learning by building.</p><a class="text-link" data-github-link href="https://github.com/hkk-cody" target="_blank" rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a></div></footer>
-    <button class="back-to-top icon-button" id="back-to-top" type="button" aria-label="페이지 맨 위로 이동" hidden>↑</button>
-  </body>
+  <footer class="site-footer">
+    <div class="container footer-content"><a class="wordmark" href="#hero"><span data-profile="name">hkk</span><span
+          class="accent">.</span></a>
+      <p>© <span id="copyright-year">2026</span> <span data-profile="name">hkk</span>. Learning by building.</p><a
+        class="text-link" data-github-link href="https://github.com/hkk-cody" target="_blank"
+        rel="noopener noreferrer">GitHub <span aria-hidden="true">↗</span></a>
+    </div>
+  </footer>
+  <button class="back-to-top icon-button" id="back-to-top" type="button" aria-label="페이지 맨 위로 이동" hidden>↑</button>
+</body>
+
 </html>
